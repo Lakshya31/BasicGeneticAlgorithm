@@ -1,6 +1,8 @@
 """
 This is a program to demonstrate working of basic genetic algorithm which is searching for the least valued points
 in the graph of sin(x^2), hope you like it! ^_^
+
+Once the run is complete, you can go to the "Output" folder and slideshow the output Images in order of Generation
 """
 
 # Made by Lakshya Sharma
@@ -16,26 +18,26 @@ import shutil
 import os
 
 
-# GA Parameters
+# GA Parameters : Tweak and test for different parameters to get varying results
 
-pc = 0.4
-pm = 0.2
-population_size = 10
-num_chromosomes = 1
-Generation = -1
-avg = 0.3
-parent_size = int(pc*population_size)
-children_size = int(pc*population_size)
+pc = 0.4                                                                        # Probability of Crossover
+pm = 0.2                                                                        # Probability of mutation
+population_size = 10                                                            # Number of Individuals
+num_chromosomes = 1                                                             # Number of Chromosomes
+Generation = -1                                                                 # Generation Count
+avg = 0.3                                                                       # Averaging Factor
+parent_size = int(pc*population_size)                                           # Size of parent array
+children_size = int(pc*population_size)                                         # Size of children array
 
 
 # Global Lists:
 
-population = numpy.array([[None]*num_chromosomes]*population_size)
-fitness_values = numpy.array([None]*population_size)
-parents = [None]*parent_size
-children = numpy.array([[None]*num_chromosomes]*children_size)
-fit_list = []
-fittest = population_size
+population = numpy.array([[None]*num_chromosomes]*population_size)               # The Population
+fitness_values = numpy.array([None]*population_size)                             # Respective fitness values
+parents = [None]*parent_size                                                     # Indexes of selected parents
+children = numpy.array([[None]*num_chromosomes]*children_size)                   # Crossover result storage array
+fit_list = []                                                                    # list of fittest individual in each Gen
+fittest = population_size                                                        # index of the fittest individual of the Gen
 
 
 # UDF
@@ -99,8 +101,9 @@ def visualize():
     plt.grid(color='GREEN', linestyle='-', linewidth=0.5)
 
     plt.savefig("Output\\Generation#"+str(Generation)+".png")
-    #plt.show()
+    #plt.show()      # Comment this line if you wanna see the output after the run instead of during the run
     plt.close()
+
 
 def parent_selection():
     """Selection algorithm for parent selection"""
@@ -131,7 +134,7 @@ def mutation():
             for j in range(num_chromosomes):
                 prob = numpy.random.uniform(0, 1)
                 if prob < pm:
-                    children[i][j] *= numpy.random.choice([0.99, 1.01])
+                    children[i][j] *= numpy.random.uniform(0.9,1.1)
 
 def survivor_selection():
     """Selection algorithm for survivor selection"""
@@ -157,11 +160,11 @@ def termination_conditions():
     global Generation
     Generation += 1
 
-    if Generation == 40:
+    if Generation == 1000:
         print("\n\n\nMaximum Generation Limit Reached\n")
         return False
 
-    if Generation>20:
+    if Generation>10:
         """
         for i in range(len(fit_list)-1, len(fit_list)-15, -1):
             if fit_list[i] != fit_list[i-1]:
@@ -179,10 +182,10 @@ def termination_conditions():
 
 # Main
 
-shutil.rmtree("Output")
-time.sleep(1)
-os.makedirs("Output")
-start = time.time()
+shutil.rmtree("Output")                                                         # Deletes previous output folder
+time.sleep(1)                                                                   # Allows time for deletion
+os.makedirs("Output")                                                           # Makes a new Output directory
+start = time.time()                                                             # Times the GA
 
 #GA
 
