@@ -20,7 +20,7 @@ import os
 
 pc = 0.4
 pm = 0.2
-population_size = 20
+population_size = 30
 num_chromosomes = 1
 Generation = -1
 avg = 0.3
@@ -99,7 +99,7 @@ def visualize():
     plt.grid(color='GREEN', linestyle='-', linewidth=0.5)
 
     plt.savefig("Output\\Generation#"+str(Generation)+".png")
-    plt.show()
+    #plt.show()
     plt.close()
 
 def parent_selection():
@@ -162,14 +162,15 @@ def termination_conditions():
         return False
 
     if Generation>20:
+        """
         for i in range(len(fit_list)-1, len(fit_list)-15, -1):
             if fit_list[i] != fit_list[i-1]:
                 break
         else:
             print("\n\n\nNo Change Detected in past 15 generations\n")
             return False
-
-        if fit_list[len(fit_list)-2] == -1:
+         """
+        if fit_list[len(fit_list)-2] == fit_list[len(fit_list)-2] == -1:
             print("\n\n\nMinimum Value Achieved\n")
             return False
 
