@@ -20,7 +20,7 @@ import os
 
 pc = 0.4
 pm = 0.2
-population_size = 30
+population_size = 10
 num_chromosomes = 1
 Generation = -1
 avg = 0.3
@@ -131,7 +131,7 @@ def mutation():
             for j in range(num_chromosomes):
                 prob = numpy.random.uniform(0, 1)
                 if prob < pm:
-                    children[i][j] *= numpy.random.choice([0.8, 1.2])
+                    children[i][j] *= numpy.random.choice([0.99, 1.01])
 
 def survivor_selection():
     """Selection algorithm for survivor selection"""
@@ -157,7 +157,7 @@ def termination_conditions():
     global Generation
     Generation += 1
 
-    if Generation == 100:
+    if Generation == 40:
         print("\n\n\nMaximum Generation Limit Reached\n")
         return False
 
