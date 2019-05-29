@@ -99,7 +99,7 @@ def visualize():
     plt.grid(color='GREEN', linestyle='-', linewidth=0.5)
 
     plt.savefig("Output\\Generation#"+str(Generation)+".png")
-    # plt.show()
+    plt.show()
     plt.close()
 
 def parent_selection():
