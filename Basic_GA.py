@@ -43,6 +43,7 @@ fittest = population_size                                                       
 
 # UDF
 
+
 def graph_initialization():
     """Initializes a graph of sin(x^2) for better visualization"""
 
@@ -93,7 +94,7 @@ def visualize():
     for i in range(population_size):
         if i != fittest:
             for j in range(num_chromosomes):
-                plt.scatter(population[i][j], fitness_values[i], marker=".", color = "RED")
+                plt.scatter(population[i][j], fitness_values[i], marker=".", color="RED")
     plt.scatter(population[fittest][0], fitness_values[fittest], marker="*", color="BLUE")
 
     plt.title("Generation#"+str(Generation))
@@ -102,7 +103,7 @@ def visualize():
     plt.grid(color='GREEN', linestyle='-', linewidth=0.5)
 
     plt.savefig("Output\\Generation#"+str(Generation)+".png")
-    #plt.show()      # Comment this line if you wanna see the output after the run instead of during the run
+    # plt.show()      # Comment this line if you wanna see the output after the run instead of during the run
     plt.close()
 
 
@@ -123,19 +124,21 @@ def parent_selection():
 def crossover():
     """Performs crossover on selected parents"""
 
-    for i in range(0,parent_size, 2):
+    for i in range(0, parent_size, 2):
         for j in range(num_chromosomes):
-            children[i][j] = avg * population[parents[i]][j] + (1-avg)*population[parents[i+ 1]][j]
+            children[i][j] = avg * population[parents[i]][j] + (1-avg)*population[parents[i + 1]][j]
             children[i+1][j] = (1-avg) * population[parents[i]][j] + avg * population[parents[i + 1]][j]
+
 
 def mutation():
     """Performs mutation on all new children"""
 
     for i in range(children_size):
-            for j in range(num_chromosomes):
-                prob = numpy.random.uniform(0, 1)
-                if prob < pm:
-                    children[i][j] *= numpy.random.uniform(0.9,1.1)
+        for j in range(num_chromosomes):
+            prob = numpy.random.uniform(0, 1)
+            if prob < pm:
+                children[i][j] *= numpy.random.uniform(0.9, 1.1)
+
 
 def survivor_selection():
     """Selection algorithm for survivor selection"""
@@ -165,7 +168,7 @@ def termination_conditions():
         print("\n\n\nMaximum Generation Limit Reached\n")
         return False
 
-    if Generation>10:
+    if Generation > 10:
         """
         for i in range(len(fit_list)-1, len(fit_list)-15, -1):
             if fit_list[i] != fit_list[i-1]:
@@ -203,4 +206,4 @@ while termination_conditions():
     survivor_selection()
 
 end = time.time()
-print("Time Taken:",int(end-start),"seconds")
+print("Time Taken:", int(end-start), "seconds")
