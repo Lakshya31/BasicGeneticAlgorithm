@@ -3,6 +3,7 @@ This is a program to demonstrate working of basic genetic algorithm which is sea
 in the graph of sin(x^2), hope you like it! ^_^
 
 Once the run is complete, you can go to the "Output" folder and slideshow the output Images in order of Generation
+to visualize the changes
 """
 
 # Made by Lakshya Sharma
