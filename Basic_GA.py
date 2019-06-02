@@ -23,7 +23,7 @@ import os
 
 pc = 0.4                                                                        # Probability of Crossover
 pm = 0.2                                                                        # Probability of mutation
-population_size = 10                                                            # Number of Individuals
+population_size = 40                                                            # Number of Individuals
 num_chromosomes = 1                                                             # Number of Chromosomes
 Generation = -1                                                                 # Generation Count
 avg = 0.3                                                                       # Averaging Factor
@@ -49,6 +49,7 @@ def graph_initialization():
 
     r = numpy.arange(-1 * math.pi, math.pi, 1e-3)
     f = numpy.vectorize(math.sin)
+    plt.clf()
     plt.plot(r, f(r ** 2), color="BLACK")
 
 
@@ -103,8 +104,7 @@ def visualize():
     plt.grid(color='GREEN', linestyle='-', linewidth=0.5)
 
     plt.savefig("Output\\Generation#"+str(Generation)+".png")
-    # plt.show()      # Comment this line if you wanna see the output after the run instead of during the run
-    plt.close()
+    plt.pause(0.5)      # Comment this line if you wanna see the output after the run instead of during the run
 
 
 def parent_selection():
@@ -207,3 +207,4 @@ while termination_conditions():
 
 end = time.time()
 print("Time Taken:", int(end-start), "seconds")
+plt.show()
