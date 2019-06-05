@@ -23,7 +23,7 @@ import os
 
 pc = 0.4                                                                        # Probability of Crossover
 pm = 0.2                                                                        # Probability of mutation
-population_size = 20                                                            # Number of Individuals
+population_size = 40                                                            # Number of Individuals
 num_chromosomes = 1                                                             # Number of Chromosomes
 Generation = -1                                                                 # Generation Count
 avg = 0.3                                                                       # Averaging Factor
@@ -67,8 +67,8 @@ def fitness_calculation():
     for i in range(population_size):
         for j in range(num_chromosomes):
             fitness_values[i] = math.sin((population[i][j])**2)
-            if fitness_values[i] < -0.999:
-                fitness_values[i] = -1
+            # if fitness_values[i] < -0.999:
+              #  fitness_values[i] = -1
 
 
 def display():
@@ -164,7 +164,7 @@ def termination_conditions():
     global Generation
     Generation += 1
 
-    if Generation == 1000:
+    if Generation == 10000:
         print("\n\n\nMaximum Generation Limit Reached\n")
         return False
 
@@ -206,5 +206,6 @@ while termination_conditions():
     survivor_selection()
 
 end = time.time()
-print("Time Taken:", int(end-start), "seconds")
+print("\nMinimum found at x =",population[fittest][0])
+print("\n\nTime Taken:", int(end-start), "seconds")
 plt.show()
