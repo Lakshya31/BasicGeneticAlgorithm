@@ -164,7 +164,7 @@ def termination_conditions():
     global Generation
     Generation += 1
 
-    if Generation == 10000:
+    if Generation == 100:
         print("\n\n\nMaximum Generation Limit Reached\n")
         return False
 
