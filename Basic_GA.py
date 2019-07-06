@@ -104,7 +104,7 @@ def visualize():
     plt.grid(color='GREEN', linestyle='-', linewidth=0.5)
 
     plt.savefig("Output\\Generation#"+str(Generation)+".png")
-    plt.pause(0.25)      # Comment this line if you wanna see the output after the run instead of during the run
+    plt.pause(1)      # Comment this line if you wanna see the output after the run instead of during the run
 
 
 def parent_selection():
